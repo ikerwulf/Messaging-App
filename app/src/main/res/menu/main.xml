@@ -6,8 +6,4 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         android:onClick="SettingsTest"/>
-    <item
-        android:id="@+id/otherItem"
-        android:orderInCategory="100"
-        android:title="TestingItem"/>
 </menu>
