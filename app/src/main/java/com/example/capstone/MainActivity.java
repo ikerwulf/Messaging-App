@@ -1,16 +1,18 @@
 package com.example.capstone;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
-
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -29,20 +31,38 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        /* FloatingActionButton fab = findViewById(R.id.fab);
+        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
+
+        /* toolbar.setTitleTextAppearance(this, R.style.comfortaaTextAppearance);
+
+        TextView textCustomTitle = (TextView) findViewById(R.id.custom_title);
+
+        // Custom font
+        Typeface customFont = Typeface.createFromAsset(this.getAssets(), "@font/comfortaa_regular.tff");
+
+        // Set
+        textCustomTitle.setTypeface(customFont);
+
+        setSupportActionBar(toolbar);
+
+        */
+
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent switchToChat = new Intent(MainActivity.this, SimpleChat.class);
+                MainActivity.this.startActivity(switchToChat);
             }
+        });
 
 
-        });*/
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
+
         mAppBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
                 .setDrawerLayout(drawer)

@@ -16,27 +16,11 @@
         android:gravity="center_horizontal"
         android:textAlignment="center"
         android:textSize="20sp"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.511" />
-
-    <Button
-        android:id="@+id/button"
-        style="@style/Widget.AppCompat.Button.Borderless.Colored"
-        android:layout_width="128dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="252dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginRight="28dp"
-        android:layout_weight="1"
-        android:onClick="OpenSimpleChat"
-        android:text="Chat"
-        app:icon="?android:attr/textSelectHandleLeft"
-        app:layout_constraintEnd_toEndOf="@+id/text_home"
-        app:layout_constraintTop_toBottomOf="@+id/text_home"
-        tools:ignore="OnClick" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
