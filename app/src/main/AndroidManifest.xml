@@ -9,13 +9,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CAPSTONE">
-
+        <activity android:name=".DisplayMessageActivity"
+            android:parentActivityName=".SimpleChat">
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".SimpleChat" />
+        </activity>
         <activity
             android:name=".SimpleChat"
-            android:label="SimpleChat"></activity>
+            android:label="SimpleChat" />
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings"></activity>
+            android:label="@string/title_activity_settings" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
