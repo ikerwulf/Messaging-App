@@ -35,11 +35,11 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/bottomAppBar">
 
-            <EditText
-                android:id="@+id/editText"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/message_input"
                 android:layout_width="254dp"
                 android:layout_height="56dp"
-                android:hint="@string/edit_message" /> //Previously: com.google.android.material.textfield.TextInputEditText
+                android:hint="Enter Message..." />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -49,8 +49,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
-            android:onClick="sendMessage"
-            android:text="@string/button_send"
+            android:text="Send"
             app:layout_constraintBottom_toBottomOf="@+id/bottomAppBar"
             app:layout_constraintEnd_toEndOf="@+id/bottomAppBar"
             app:layout_constraintHorizontal_bias="0.797"
@@ -62,11 +61,11 @@
             android:layout_width="138dp"
             android:layout_height="34dp"
             android:layout_marginBottom="76dp"
+            android:text="TextView"
             app:layout_constraintBottom_toTopOf="@+id/bottomAppBar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.898"
             app:layout_constraintStart_toStartOf="parent" />
-
 
         <Button
             android:id="@+id/button3"
