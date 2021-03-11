@@ -9,11 +9,12 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/backbtn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClick="GoingBack"
-            android:text="Back"
-            app:backgroundTint="#00BCD4" />
+            android:id="@+id/switch_btn"
+            android:layout_width="141dp"
+            android:layout_height="33dp"
+            android:text="Enable Dark Mode"
+            android:visibility="visible" />
     </FrameLayout>
+
+
 </LinearLayout>
