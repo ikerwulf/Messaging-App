@@ -45,15 +45,15 @@ public class SimpleChat extends AppCompatActivity {
     public void sendMessage(View view) //Send button response
     {
         Intent intent = getIntent();
-
-        EditText editText = (EditText) findViewById(R.id.editText);
+        RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
+        EditText editText = (EditText) findViewById(R.id.message_input);
         String message = editText.getText().toString();
         intent.putExtra(Xtra_Msg, message);
 
 
         message = intent.getStringExtra(SimpleChat.Xtra_Msg);
         TextView message_out = findViewById(R.id.message_output);
-        RelativeLayout.LayoutParams params1 =  (RelativeLayout.LayoutParams) message_out.getLayoutParams();
+
         if(message_out.hasSelection() == false)
         {
             // Capture the layout's TextView and set the string as its tex
