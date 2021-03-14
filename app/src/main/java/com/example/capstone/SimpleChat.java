@@ -1,6 +1,7 @@
 package com.example.capstone;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.app.Activity;
 import android.text.Layout;
@@ -16,11 +17,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import java.text.DateFormat;
+import java.util.ArrayList;
+import androidx.recyclerview.widget.RecyclerView;
+
+
+
 
 import com.example.capstone.ui.main.SimpleChatFragment;
 
 public class SimpleChat extends AppCompatActivity {
     public static final String Xtra_Msg = "com.example.myfirstapp.MESSAGE";
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +45,20 @@ public class SimpleChat extends AppCompatActivity {
                     .replace(R.id.container, SimpleChatFragment.newInstance())
                     .commitNow();
         }
+
+
+
+
+        ArrayList<MessageModel> messagesList = new ArrayList<>();
+        for (int i=0;i<10;i++) {
+            messagesList.add(new MessageModel("Hi", i % 2 == 0 ? CustomAdapter.MESSAGE_TYPE_IN : CustomAdapter.MESSAGE_TYPE_OUT));
+        }
+
+        CustomAdapter adapter = new CustomAdapter(this, messagesList);
+
+        recyclerView = findViewById(R.id.recycler_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
     }
 
     public void OpenSimpleChat(View view) {
@@ -42,7 +69,7 @@ public class SimpleChat extends AppCompatActivity {
         SimpleChat.this.startActivity(switchToChat);
     }
 
-    public void sendMessage(View view) //Send button response
+    /* public void sendMessage(View view) //Send button response
     {
         Intent intent = getIntent();
         RelativeLayout.LayoutParams params1 = new RelativeLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT);
@@ -78,9 +105,7 @@ public class SimpleChat extends AppCompatActivity {
 
         //((FrameLayout) findViewById(R.id.simple_chat)).addView(nwTxt, params1);
 
-
+        */
 
     }
 
-
-}

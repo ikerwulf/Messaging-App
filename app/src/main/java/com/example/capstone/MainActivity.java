@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.Menu;
 import android.widget.Button;
 import android.widget.TextView;
-
+import java.util.*;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -27,6 +27,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+import java.text.DateFormat;
+import java.util.ArrayList;
+
 
 import static android.content.SharedPreferences.*;
 
@@ -34,6 +44,7 @@ import static android.content.SharedPreferences.*;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,20 +53,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
-
-        /* toolbar.setTitleTextAppearance(this, R.style.comfortaaTextAppearance);
-
-        TextView textCustomTitle = (TextView) findViewById(R.id.custom_title);
-
-        // Custom font
-        Typeface customFont = Typeface.createFromAsset(this.getAssets(), "@font/comfortaa_regular.tff");
-
-        // Set
-        textCustomTitle.setTypeface(customFont);
-
-        setSupportActionBar(toolbar);
-
-        */
 
 
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -126,3 +123,4 @@ public class MainActivity extends AppCompatActivity {
 
 
 }
+
