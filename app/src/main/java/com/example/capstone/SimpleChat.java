@@ -1,10 +1,10 @@
 package com.example.capstone;
-
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.app.Activity;
+import android.text.Editable;
 import android.text.Layout;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -25,15 +25,24 @@ import android.widget.TextView;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import androidx.recyclerview.widget.RecyclerView;
-
-
-
-
 import com.example.capstone.ui.main.SimpleChatFragment;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class SimpleChat extends AppCompatActivity {
     public static final String Xtra_Msg = "com.example.myfirstapp.MESSAGE";
     RecyclerView recyclerView;
+    ArrayList<MessageModel> messagesList = new ArrayList<>(2);
+
+    public void sendMessage(View v) {
+        TextInputLayout textInputLayout = findViewById(R.id.textInputLayout);
+        String sentMessage = textInputLayout.getEditText().getText().toString();
+
+        for (int i=0;i<1;i++) {
+            messagesList.add(new MessageModel(sentMessage, i % 2 == 0 ? CustomAdapter.MESSAGE_TYPE_OUT : CustomAdapter.MESSAGE_TYPE_IN));
+        }
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,27 +55,20 @@ public class SimpleChat extends AppCompatActivity {
                     .commitNow();
         }
 
+        /* Button sendButtonPress = findViewById(R.id.sendButton);
+        sendButtonPress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                messagesList.add(new MessageModel("Hi", CustomAdapter.MESSAGE_TYPE_IN));
 
-
-
-        ArrayList<MessageModel> messagesList = new ArrayList<>();
-        for (int i=0;i<10;i++) {
-            messagesList.add(new MessageModel("Hi", i % 2 == 0 ? CustomAdapter.MESSAGE_TYPE_IN : CustomAdapter.MESSAGE_TYPE_OUT));
-        }
+            }
+        }); */
 
         CustomAdapter adapter = new CustomAdapter(this, messagesList);
 
         recyclerView = findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
-    }
-
-    public void OpenSimpleChat(View view) {
-    }
-
-    public void GoingBack(View view) {
-        Intent switchToChat = new Intent(SimpleChat.this, MainActivity.class);
-        SimpleChat.this.startActivity(switchToChat);
     }
 
     /* public void sendMessage(View view) //Send button response

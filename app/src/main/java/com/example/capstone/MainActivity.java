@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void OpenSimpleChat(View view) {
+    public void openSimpleChat(View view) {
                 Intent switchToChat = new Intent(MainActivity.this, SimpleChat.class);
                 MainActivity.this.startActivity(switchToChat);
             }
@@ -120,7 +120,4 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-
-
 }
-
