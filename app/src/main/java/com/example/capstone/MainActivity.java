@@ -27,8 +27,8 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity implements AddingDialog.ContactDialogListener {
 
     private AppBarConfiguration mAppBarConfiguration;
-    RecyclerView recyclerView;
-    ArrayList<ContactModel> contactsList = new ArrayList<>(2);
+    //RecyclerView recyclerView;
+    //ArrayList<ContactModel> contactsList = new ArrayList<>(2);
 
     private TextView textContactAdded;
     private Button addContactButton;
@@ -43,14 +43,20 @@ public class MainActivity extends AppCompatActivity implements AddingDialog.Cont
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
 
 
-        ContactsAdapter adapter = new ContactsAdapter(this, contactsList);
-        recyclerView = findViewById(R.id.recycler_view_contacts);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
+        //ContactsAdapter adapter = new ContactsAdapter(this, contactsList);
+        //recyclerView = findViewById(R.id.recycler_view_contacts);
+        //recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        //recyclerView.setAdapter(adapter);
 
 
 
 
+
+
+
+        textContactAdded = (TextView) findViewById(R.id.contact_item);
+        //String theAddedContact = textContactAdded.getText().toString();
+        // contactsList.add(new ContactModel(theAddedContact, ContactsAdapter.CONTACT_IN));
 
         addContactButton = (Button) findViewById(R.id.addbutton);
         addContactButton.setOnClickListener(new View.OnClickListener() {
@@ -59,7 +65,6 @@ public class MainActivity extends AppCompatActivity implements AddingDialog.Cont
                 openDialog();
             }
         });
-
 
 
 
@@ -87,10 +92,6 @@ public class MainActivity extends AppCompatActivity implements AddingDialog.Cont
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-
-
-
-
     }
 
     public void openSimpleChat(View view) {
@@ -128,6 +129,11 @@ public class MainActivity extends AppCompatActivity implements AddingDialog.Cont
 
     public void applyTexts(String userContact) {
         textContactAdded.setText(userContact);
+        /* textContactAdded = (TextView) findViewById(R.id.contact_item);
+        String theAddedContact = textContactAdded.getText().toString();
+        for (int i = 0; i < 1; i++) {
+            contactsList.add(new ContactModel(theAddedContact, i % 2 == 0 ? CustomAdapter.MESSAGE_TYPE_OUT : CustomAdapter.MESSAGE_TYPE_IN));
+        } */
     }
 
 }
