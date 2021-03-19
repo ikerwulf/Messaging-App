@@ -38,10 +38,11 @@ public class SimpleChat extends AppCompatActivity {
         TextInputLayout textInputLayout = findViewById(R.id.textInputLayout);
         String sentMessage = textInputLayout.getEditText().getText().toString();
 
-        for (int i=0;i<1;i++) {
+        for (int i = 0; i < 1; i++) {
             messagesList.add(new MessageModel(sentMessage, i % 2 == 0 ? CustomAdapter.MESSAGE_TYPE_OUT : CustomAdapter.MESSAGE_TYPE_IN));
         }
 
+        textInputLayout.getEditText().getText().clear();
     }
 
     @Override
@@ -54,15 +55,6 @@ public class SimpleChat extends AppCompatActivity {
                     .replace(R.id.container, SimpleChatFragment.newInstance())
                     .commitNow();
         }
-
-        /* Button sendButtonPress = findViewById(R.id.sendButton);
-        sendButtonPress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                messagesList.add(new MessageModel("Hi", CustomAdapter.MESSAGE_TYPE_IN));
-
-            }
-        }); */
 
         CustomAdapter adapter = new CustomAdapter(this, messagesList);
 
@@ -78,16 +70,12 @@ public class SimpleChat extends AppCompatActivity {
         EditText editText = (EditText) findViewById(R.id.message_input);
         String message = editText.getText().toString();
         intent.putExtra(Xtra_Msg, message);
-
-
         message = intent.getStringExtra(SimpleChat.Xtra_Msg);
         TextView message_out = findViewById(R.id.message_output);
-
         if(message_out.hasSelection() == false)
         {
             // Capture the layout's TextView and set the string as its tex
             message_out.setText(message);
-
         }
         else
         {
@@ -97,17 +85,11 @@ public class SimpleChat extends AppCompatActivity {
             TextView nwTxt = findViewById(R.id.message_output);
             nwTxt.setText(message);
         }
-
-
-
         //Creates a new text box
         //TextView nwTxt = new TextView(SimpleChat.this);
         //nwTxt.setId(R.id.message_output);
         //FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT, Gravity.CENTER);
-
         //((FrameLayout) findViewById(R.id.simple_chat)).addView(nwTxt, params1);
-
         */
 
-    }
-
+}

@@ -1,20 +1,16 @@
 package com.example.capstone;
 
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.text.Html;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Button;
 import android.widget.TextView;
-import java.util.*;
+import com.example.capstone.ui.AddingDialog;
+import com.example.capstone.ui.ContactsAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
-
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -22,29 +18,21 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import android.content.SharedPreferences;
-import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import java.text.DateFormat;
 import java.util.ArrayList;
 
 
-import static android.content.SharedPreferences.*;
 
-
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements AddingDialog.ContactDialogListener {
 
     private AppBarConfiguration mAppBarConfiguration;
     RecyclerView recyclerView;
+    ArrayList<ContactModel> contactsList = new ArrayList<>(2);
+
+    private TextView textContactAdded;
+    private Button addContactButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,17 +43,30 @@ public class MainActivity extends AppCompatActivity {
         toolbar.setTitleTextColor(getResources().getColor(R.color.white));
 
 
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        ContactsAdapter adapter = new ContactsAdapter(this, contactsList);
+        recyclerView = findViewById(R.id.recycler_view_contacts);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+
+
+
+
+
+        addContactButton = (Button) findViewById(R.id.addbutton);
+        addContactButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent switchToChat = new Intent(MainActivity.this, SimpleChat.class);
-                MainActivity.this.startActivity(switchToChat);
+            public void onClick(View v) {
+                openDialog();
             }
         });
 
-        Button chatChange = findViewById(R.id.active_chat);
-        chatChange.setOnClickListener(new View.OnClickListener() {
+
+
+
+
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent switchToChat = new Intent(MainActivity.this, SimpleChat.class);
@@ -120,4 +121,13 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+    public void openDialog() {
+        AddingDialog addDialog = new AddingDialog();
+        addDialog.show(getSupportFragmentManager(), "Adding Contact");
+    }
+
+    public void applyTexts(String userContact) {
+        textContactAdded.setText(userContact);
+    }
+
 }

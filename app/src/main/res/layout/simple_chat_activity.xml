@@ -66,16 +66,6 @@
             app:layout_constraintHorizontal_bias="0.797"
             app:layout_constraintStart_toEndOf="@+id/textInputLayout"
             app:layout_constraintTop_toTopOf="@+id/bottomAppBar" />
-
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Test"
-
-            app:layout_constraintBottom_toTopOf="@+id/bottomAppBar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>
