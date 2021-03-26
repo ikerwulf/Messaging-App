@@ -1,4 +1,4 @@
-package com.example.capstone.ui;
+package com.example.capstone;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -31,7 +31,6 @@ public class AddingDialog extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                     }
-
                 })
                 .setPositiveButton("ok", new DialogInterface.OnClickListener() {
                     @Override
@@ -55,5 +54,6 @@ public class AddingDialog extends AppCompatDialogFragment {
     }
     public interface ContactDialogListener {
         void applyTexts(String userContact);
+
     }
 }
