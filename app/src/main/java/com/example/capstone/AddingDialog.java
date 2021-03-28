@@ -39,7 +39,7 @@ public class AddingDialog extends AppCompatDialogFragment {
                         listener.applyTexts(userContact);
                     }
                 });
-        editAddContact = view.findViewById(R.id.add_Contact);
+        editAddContact = view.findViewById(R.id.edittext_line_1);
         return builder.create();
     }
     @Override
@@ -47,6 +47,7 @@ public class AddingDialog extends AppCompatDialogFragment {
         super.onAttach(context);
         try {
             listener = (ContactDialogListener) context;
+
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() +
                     "must implement ExampleDialogListener");

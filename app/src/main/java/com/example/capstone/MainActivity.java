@@ -2,14 +2,16 @@ package com.example.capstone;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.textfield.TextInputLayout;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -23,14 +25,18 @@ import java.util.ArrayList;
 
 
 
-public class MainActivity extends AppCompatActivity implements AddingDialog.ContactDialogListener {
+
+public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
-    RecyclerView recyclerView;
-    ArrayList<ContactModel> contactsList = new ArrayList<>(2);
+    // RecyclerView recyclerView;
+    ArrayList<ContactModel> contactsList = new ArrayList<>(1);
+    private RecyclerView mRecyclerView;
+    private ExampleAdapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+    //private TextView textContactAdded;
+    //private Button addContactButton;
 
-    private TextView textContactAdded;
-    private Button addContactButton;
 
 
     @Override
@@ -39,31 +45,10 @@ public class MainActivity extends AppCompatActivity implements AddingDialog.Cont
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        toolbar.setTitleTextColor(getResources().getColor(R.color.white));
 
-
-        ContactsAdapter adapter = new ContactsAdapter(this, contactsList);
-        recyclerView = findViewById(R.id.recycler_view_contacts);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
-
-
-
-
-
-        textContactAdded = (TextView) findViewById(R.id.contact_item);
-        String theAddedContact = textContactAdded.toString();
-        contactsList.add(new ContactModel(theAddedContact, ContactsAdapter.CONTACT_IN));
-
-        addContactButton = (Button) findViewById(R.id.addbutton);
-        addContactButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openDialog();
-            }
-        });
-
-
+        loadData();
+        buildRecyclerView();
+        setInsertButton();
 
 
 
@@ -91,12 +76,6 @@ public class MainActivity extends AppCompatActivity implements AddingDialog.Cont
         NavigationUI.setupWithNavController(navigationView, navController);
     }
 
-    public void openSimpleChat(View view) {
-                Intent switchToChat = new Intent(MainActivity.this, SimpleChat.class);
-                MainActivity.this.startActivity(switchToChat);
-            }
-
-
 
     public void SettingsTest(MenuItem item) {
 
@@ -119,14 +98,49 @@ public class MainActivity extends AppCompatActivity implements AddingDialog.Cont
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
-    public void openDialog() {
+
+    private void loadData() {
+
+        if (contactsList == null) {
+            contactsList = new ArrayList<>();
+        }
+    }
+
+    private void setInsertButton() {
+        Button buttonInsert = findViewById(R.id.addContact);
+        buttonInsert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText line1 = findViewById(R.id.edittext_line_1);
+                insertItem(line1.getText().toString());
+            }
+        });
+    }
+
+    private void buildRecyclerView() {
+        mRecyclerView = findViewById(R.id.recycler_view_contacts);
+        mRecyclerView.setHasFixedSize(true);
+        mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+        mAdapter = new ExampleAdapter(contactsList);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
+    private void insertItem(String line1) {
+        contactsList.add(new ContactModel(line1));
+        mAdapter.notifyItemInserted(contactsList.size());
+    }
+
+
+    /*public void openDialog() {
         AddingDialog addDialog = new AddingDialog();
         addDialog.show(getSupportFragmentManager(), "Adding Contact");
     }
 
     public void applyTexts(String userContact) {
-
-    }
+    EditText line1 = findViewById(R.id.edittext_line_1);
+                insertItem(line1.getText().toString());
+    } */
 
 }
 

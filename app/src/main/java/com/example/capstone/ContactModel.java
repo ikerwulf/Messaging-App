@@ -16,11 +16,13 @@ import com.example.capstone.R;
 
 public class ContactModel {
 
-    public String contactName;
-    public int contactType;
+    private String mLine1;
     // Constructor
-    public ContactModel(String contactName, int contactType) {
-        this.contactName = contactName;
-        this.contactType = contactType;
+    public ContactModel(String line1) {
+        mLine1 = line1;
+    }
+
+    public String getLine1() {
+        return mLine1;
     }
 }
